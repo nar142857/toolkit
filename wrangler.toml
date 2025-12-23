@@ -1,0 +1,21 @@
+name = "toolkit-api"
+main = "src/api/index.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "toolkit-api"
+
+[env.development]
+name = "toolkit-api-dev"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "toolkit-db"
+database_id = "your-database-id"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "your-kv-namespace-id"
+
+[vars]
+ENVIRONMENT = "production"
