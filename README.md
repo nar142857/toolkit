@@ -1,5 +1,103 @@
-# Vue 3 + TypeScript + Vite
+# 工具合集网站开发计划
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 项目概述
+一个类似的在线工具合集网站，部署在 Cloudflare 上。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 技术架构
+1. **前端**：Vue 3 + Vite + Tailwind CSS + TDesign
+2. **后端**：Cloudflare Workers + D1/KV
+3. **部署**：Cloudflare Pages + Workers
+
+## 项目结构
+```
+toolkit/
+├── src/
+│   ├── api/           # Cloudflare Workers API 代码
+│   ├── components/    # Vue 组件
+│   ├── pages/         # 页面组件
+│   ├── services/      # API 服务
+│   ├── stores/        # Pinia 状态管理
+│   ├── views/         # 视图组件
+│   └── router/        # 路由配置
+├── deploy/           # 部署脚本
+├── wrangler.toml     # Cloudflare Workers 配置
+└── README.md
+```
+
+## 功能模块
+1. ✅ **工具分类导航**
+   - 左侧固定导航栏
+   - 分类筛选功能
+   - 工具数量统计
+
+2. ✅ **工具页面**
+   - 文本去重工具（完整实现）
+   - 响应式设计
+   - 实时计算/转换
+
+3. 🚧 **用户系统**
+   - 登录、收藏（计划中）
+
+4. ✅ **数据统计**
+   - 工具使用次数统计
+   - 后端 API 集成
+   - 健康检查
+
+## 开发进度
+1. ✅ **第一阶段**：搭建基础框架
+   - 前端项目初始化
+   - 后端 Workers 配置
+
+2. ✅ **第二阶段**：核心功能开发
+   - 工具分类导航实现
+   - 基础工具页面开发
+
+3. 🚧 **第三阶段**：扩展功能
+   - 用户系统集成（进行中）
+   - 数据统计功能（已完成）
+
+4. ⏳ **第四阶段**：测试与部署
+   - 功能测试
+   - 部署到 Cloudflare
+
+## 部署指南
+
+### 前端部署（Cloudflare Pages）
+1. 推送代码到 GitHub 仓库
+2. 在 Cloudflare Pages 关联仓库
+3. 配置构建命令：`npm run build`
+4. 配置输出目录：`dist`
+
+### 后端部署（Cloudflare Workers）
+1. 安装 Wrangler CLI：`npm install -g wrangler`
+2. 登录 Cloudflare：`wrangler login`
+3. 执行部署脚本：`./deploy/workers.sh`
+4. 配置环境变量：复制 `.env.example` 到 `.env.local`
+
+### 环境变量配置
+```bash
+VITE_API_URL=https://your-worker-domain.workers.dev
+```
+
+## API 文档
+
+### 工具统计 API
+- `GET /api/stats` - 获取统计数据
+- `POST /api/stats` - 更新使用次数
+
+### 工具管理 API
+- `GET /api/tools` - 获取工具列表
+
+### 健康检查
+- `GET /api/health` - 服务状态检查
+
+## 技术特点
+- 🚀 **高性能**：Cloudflare 全球 CDN 加速
+- 💰 **低成本**：免费套餐足够使用
+- 🔧 **易维护**：无服务器架构
+- 📱 **响应式**：支持移动端访问
+
+## 注意事项
+- 代码需添加详细注释。
+- 每次修改后同步更新 README。
+- Node.js 版本要求：>= 20.0.0
